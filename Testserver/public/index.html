@@ -509,7 +509,7 @@
     </script>
 	
 	<script>
-		var socket = io.connect('ec2-52-69-25-24.ap-northeast-1.compute.amazonaws.com:3000');
+		var socket = io.connect('cheonmj.iptime.org:3000');
 		socket.on('news', function (data) {
 			console.log(data);
 			socket.emit('my other event', { my: 'data' });
