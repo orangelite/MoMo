@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MoMo</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top"  onclick = $("#menu-close").click(); >MoMo</a>
+            </li>
+            <li>
+                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+            </li>
+            <li>
+                <a href="#about" onclick = $("#menu-close").click(); >About</a>
+            </li>
+            <li>
+                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
+            </li>
+            <li>
+                <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
+            </li>
+            <li>
+                <a href="#footer" onclick = $("#menu-close").click(); >Information</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1>MoMo</h1>
+            <h3>모두의 모임</h3>
+            <br>
+            <a href="#about" class="btn btn-dark btn-lg">Get Started</a>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>여러분들이 원하는 모임을 만드세요!</h2>
+                    <p class="lead">또는 원하는 기존의 모임에 참가하세요.</p>
+					<p class="lead"> 
+					
+						<!-- username input -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+						</div>
+						
+						<!-- password input -->	
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							<input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+						</div>
+						
+						
+						<!-- Login Button -->
+						 <div style="margin-top:10px" class="form-group">
+							<div class="col-sm-12 controls">
+							  <a id="btn-login" href="#"  class="btn btn-success">Login  </a>
+							  <!-- <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
+							</div>
+						</div>
+						
+						<!-- Sign Up Button -->
+						<div class="form-group">
+							<div class="col-md-12 control">
+								<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+									Don't have an account! 
+								<!-- <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()"> -->
+							
+								<a href="#" onClick="signupModalOn()">
+									Sign Up Here
+								</a>
+								</div>
+							</div>
+						</div>    
+
+					</p>
+				</div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+	
+	<!-- 모달 -->
+	<div id="signupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">MoMo Sign Up</h4>
+		  </div>
+		  <div class="modal-body">
+			<!-- 회원가입 양식-->
+			<link rel="stylesheet" href="css/style_sign.css">
+			<h1>Sign Up</h1>
+			
+			<fieldset>
+				<!--<legend>Your basic info</legend>-->
+				<!--이름-->
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="user_name">
+				<!--메일주소-->
+				<label for="mail">Email:</label>
+				<input type="email" id="mail" name="user_email">
+				<!--비밀번호-->
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="user_password">
+				<!--비밀번호확인-->
+				<label for="password">Password Again:</label>
+				<input type="password" id="password_again" name="user_password_again">
+				<!--성별-->
+				<label>Gender:</label>
+				<input type="radio" id="male" value="male" name="user_gender"><label for="male" class="light">Male</label>
+				<input type="radio" id="female" value="female" name="user_gender"><label for="female" class="light">Female</label>
+			</fieldset>
+			<fieldset>
+				<!--생일-->
+				<label>Birthday Day:</label>
+				<select class="birth" name="Birthday_day" id="Birthday_Day" >
+					<option value="-1">Day:</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+				</select>
+
+				<select class="birth" id="Birthday_Month" name="Birthday_Month">
+					<option value="-1">Month:</option>
+					<option value="January">Jan</option>
+					<option value="February">Feb</option>
+					<option value="March">Mar</option>
+					<option value="April">Apr</option>
+					<option value="May">May</option>
+					<option value="June">Jun</option>
+					<option value="July">Jul</option>
+					<option value="August">Aug</option>
+					<option value="September">Sep</option>
+					<option value="October">Oct</option>
+					<option value="November">Nov</option>
+					<option value="December">Dec</option>
+				</select>
+
+				<select class="birth" name="Birthday_Year" id="Birthday_Year">
+					<option value="-1">Year:</option>
+					<option value="2002">2002</option>
+					<option value="2001">2001</option>
+					<option value="2000">2000</option>
+					<option value="1999">1999</option>
+					<option value="1998">1998</option>
+					<option value="1997">1997</option>
+					<option value="1996">1996</option>
+					<option value="1995">1995</option>
+					<option value="1994">1994</option>
+					<option value="1993">1993</option>
+					<option value="1992">1992</option>
+					<option value="1991">1991</option>
+					<option value="1990">1990</option>
+					<option value="1989">1989</option>
+					<option value="1988">1988</option>
+					<option value="1987">1987</option>
+					<option value="1986">1986</option>
+					<option value="1985">1985</option>
+					<option value="1984">1984</option>
+					<option value="1983">1983</option>
+					<option value="1982">1982</option>
+					<option value="1981">1981</option>
+					<option value="1980">1980</option>
+				</select>
+				<!--직업-->
+				<label for="job">Job Role:</label>
+				<select id="job" name="user_job">
+					<optgroup label="Web">
+						<option value="frontend_developer">Front-End Developer</option>
+						<option value="php_developor">PHP Developer</option>
+						<option value="python_developer">Python Developer</option>
+						<option value="rails_developer"> Rails Developer</option>
+						<option value="web_designer">Web Designer</option>
+						<option value="WordPress_developer">WordPress Developer</option>
+					</optgroup>
+					<optgroup label="Mobile">
+						<option value="Android_developer">Androild Developer</option>
+						<option value="iOS_developer">iOS Developer</option>
+						<option value="mobile_designer">Mobile Designer</option>
+					</optgroup>
+					<optgroup label="Business">
+						<option value="business_owner">Business Owner</option>
+						<option value="freelancer">Freelancer</option>
+					</optgroup>
+					<optgroup label="Other">
+						<option value="secretary">Secretary</option>
+						<option value="maintenance">Maintenance</option>
+					</optgroup>
+				</select>
+				<!--관심사-->
+				<label>Interests:</label>
+					<input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Development</label><br>
+					<input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Design</label><br>
+				<input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+			</fieldset>
+			<!--회원가입 양식 종료-->
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+    <!-- Services -->
+    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+    <section id="services" class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Provide Service List</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>생성</strong>
+                                </h4>
+                                <p>새로운 모임을 만들어보세요.</p>
+								
+                                <a id="provide-create" href="#about" class="btn btn-light" onclick="providemodalon()">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>참가</strong>
+                                </h4>
+                                <p>기존의 모임에 참가해보세요.</p>
+                                <a id="provide-join" href="#about" class="btn btn-light" onclick="providemodalon()" >Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>추천</strong>
+                                </h4>
+                                <p>특별한 모임을 추천해드립니다.</p>
+                                <a id="provide-command" href="#about" class="btn btn-light" onclick="providemodalon()" >Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>관리</strong>
+                                </h4>
+                                <p>자신의 정보를 변경할 수 있습니다.</p>
+                                <a id="provide-admin" href="#about" class="btn btn-light" onclick="providemodalon()" >Learn More</a>
+								
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+	
+	<!-- Modal -->
+	<div id="provideModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h1 id="myModalLabel" class="text-center" ><button type="button" class="btn btn-warning btn-lg" onclick="$('#provideModal').modal('hide')" >로그인이 필요합니다.</button></h1>
+	  </div>
+	  <div class="modal-body">
+		<p text-align="center" class="text-center" ><button type="button" class="btn btn-warning btn-lg" onclick="$('#provideModal').modal('hide')" >지금 바로 MoMo에 접속해보세요</button></p>
+	  </div>
+	  
+	</div>
+	
+	
+	
+	
+
+    <!-- Callout -->
+    <aside class="callout">
+        <div class="text-vertical-center">
+            <h1>원하는 모임에 지금 참여하세요.</h1>
+        </div>
+    </aside>
+
+	
+	
+	
+	
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio">
+		
+        
+        <!-- /.container -->
+    </section>
+
+    <!-- Call to Action -/->
+    <aside class="call-to-action bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>The buttons below are impossible to resist.</h3>
+                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
+                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+	-->
+
+    <!-- Map -/->
+    <section id="contact" class="map">
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
+        <br />
+        <small>
+            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
+        </small>
+        </iframe>
+    </section>
+	-->
+	
+	
+    <!-- Footer -->
+	<section id="footer" class="footer">
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 col-lg-offset-1 text-center">
+						<h4><strong>MoMo < 모두의 모임 ></strong>
+						</h4>
+						<p>Dong-A Univ.<br>Computer Engineering</p>
+						<ul class="list-unstyled">
+							<li><i class="fa fa-phone fa-fw"></i> (010) 9740-0307</li>
+							<li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:orangelite@naver.com">orangelite@naver.com</a>
+							</li>
+						</ul>
+						<br>
+						<ul class="list-inline">
+							<li>
+								<a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+							</li>
+						</ul>
+						<hr class="small">
+						<p class="text-muted">Copyright &copy; Your Website 2014</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</section>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	
+	<!-- Socket.io Core JavaScript -->
+    <script src="/socket.io/socket.io.js"></script>
+	
+	<!-- MoMo Core and etc JavaScript -->
+    <script src="js/momo.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+	
+		
+	$("#btn-login").click(function(e) {
+	   e.preventDefault();
+       console.log("Login");
+	   //console.log($('#login-username'));
+	   console.log($('#login-username').val());
+	   console.log($('#login-password').val());
+	   socket.emit('login',{ username: $('#login-username').val(), password: $('#login-password').val()})
+    });
+	
+	
+	function logout(){
+		console.log("Logout");
+		socket.emit('logout');
+		location.reload();
+	}
+	function signupModalOn(){
+		$('#signupModal').modal('show');
+	}
+	
+	function providemodalon(){
+		//<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"></button>
+		$('#provideModal').modal('show');
+	}
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+	
+	<script>
+		var socket = io.connect('cheonmj.iptime.org:3000');
+		socket.on('news', function (data) {
+			console.log(data);
+			socket.emit('my other event', { my: 'data' });
+		});
+		socket.on('loginok', function (data) {
+			console.log(data);		
+			
+			var section = '<section id="about" class="about">';
+				section+= '<div class="container">';
+				section+= '<div class="row">';
+				section+= '				<div class="col-lg-12 text-center">';
+				section+= '					<h2> '+ data.username  +'님 환영합니다. </h2>';			
+				section+= '					<p class="lead"> ';				
+				section+= '						 <div style="margin-top:10px" class="form-group">';
+				section+= '							<div class="col-sm-12 controls">';
+				section+= '							  <a id="btn-logout" href="#" onclick="logout()" class="btn btn-danger">Logout</a>';
+				section+= '							</div>';
+				section+= '						</div>';					
+				section+= '					</p>';
+				section+= '				</div>';
+				section+= '			</div>';		
+				section+= '		</div>';	
+				section+= '	</section>';
+			$("#about").replaceWith(section);
+			$('#provide-create').replaceWith('<a id="provide-create" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
+			$('#provide-join').replaceWith('<a id="provide-join" href="#portfolio" class="btn btn-success" onclick="" >Learn More</a>');
+			$('#provide-command').replaceWith('<a id="provide-command" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
+			$('#provide-admin').replaceWith('<a id="provide-admin" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
+			$('#portfolio').replaceWith(optstr);
+		});
+		
+	</script>
+	
+	<script type="text/javascript">
+    $(document).ready(function () {
+        // popover demo
+        $("a[data-toggle=popover]")
+        .popover()
+        .click(function(e) {
+            e.preventDefault()
+        })
+    });
+</script>
+
+</body>
+
+</html>
+
+<!--
+	<a id="provide-create" href="#about" class="btn btn-light">Learn More</a>
+                                <a id="provide-join" href="#about" class="btn btn-light">Learn More</a>
+                                <a id="provide-command" href="#about" class="btn btn-light">Learn More</a>    
+                                <a id="provide-admin"
+-->
