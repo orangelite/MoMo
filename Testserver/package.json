@@ -9,6 +9,9 @@
     "express": "3.2.6",
     "ejs": "*",
     "socket.io":"*",
-    "mysql":"*"
+    "mysql":"*",
+    "MD5":"*",
+    "iconv-lite":"*"
+   
   }
 }
