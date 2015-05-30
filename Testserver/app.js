@@ -11,6 +11,13 @@ var express = require('express')
 
 var app = express();
 var fs = require('fs');
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+	host : 'mydb.cwb75deezrvy.ap-northeast-1.rds.amazonaws.com',
+	user : 'cheon',
+	password : '1c235887',
+	port : '3306'	
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -68,9 +75,11 @@ io.sockets.on('connection',function(socket){
 var io = require('socket.io').listen(httpServer);
 
 io.sockets.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-        console.log(data);
+ 
+    
+    socket.on('signup',function(data){
+    	console.log(data);
+    	socket.emit(data.name);
     });
     
     socket.on('login', function (data) {

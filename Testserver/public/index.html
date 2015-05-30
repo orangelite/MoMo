@@ -138,25 +138,25 @@
 				<!--<legend>Your basic info</legend>-->
 				<!--이름-->
 				<label for="name">Name:</label>
-				<input type="text" id="name" name="user_name">
+				<input type="text" id="sign_name" name="user_name">
 				<!--메일주소-->
 				<label for="mail">Email:</label>
-				<input type="email" id="mail" name="user_email">
+				<input type="email" id="sign_mail" name="user_email">
 				<!--비밀번호-->
 				<label for="password">Password:</label>
-				<input type="password" id="password" name="user_password">
+				<input type="password" id="sign_password" name="user_password">
 				<!--비밀번호확인-->
 				<label for="password">Password Again:</label>
-				<input type="password" id="password_again" name="user_password_again">
+				<input type="password" id="sign_password_again" name="user_password_again">
 				<!--성별-->
-				<label>Gender:</label>
+				<label id="sign_gender">Gender:</label>
 				<input type="radio" id="male" value="male" name="user_gender"><label for="male" class="light">Male</label>
 				<input type="radio" id="female" value="female" name="user_gender"><label for="female" class="light">Female</label>
 			</fieldset>
 			<fieldset>
 				<!--생일-->
 				<label>Birthday Day:</label>
-				<select class="birth" name="Birthday_day" id="Birthday_Day" >
+				<select class="birth" name="sign_Birthday_day" id="Birthday_Day" >
 					<option value="-1">Day:</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -191,7 +191,7 @@
 					<option value="31">31</option>
 				</select>
 
-				<select class="birth" id="Birthday_Month" name="Birthday_Month">
+				<select class="birth" id="sign_Birthday_Month" name="Birthday_Month">
 					<option value="-1">Month:</option>
 					<option value="January">Jan</option>
 					<option value="February">Feb</option>
@@ -207,7 +207,7 @@
 					<option value="December">Dec</option>
 				</select>
 
-				<select class="birth" name="Birthday_Year" id="Birthday_Year">
+				<select class="birth" name="sign_Birthday_Year" id="Birthday_Year">
 					<option value="-1">Year:</option>
 					<option value="2002">2002</option>
 					<option value="2001">2001</option>
@@ -267,8 +267,8 @@
 			<!--회원가입 양식 종료-->
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
+			<button type="button" id="signup_close" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" onclick="signup();" class="btn btn-primary" >Save changes</button>
 		  </div>
 		</div>
 	  </div>
@@ -509,11 +509,10 @@
     </script>
 	
 	<script>
-		var socket = io.connect('ec2-52-69-25-24.ap-northeast-1.compute.amazonaws.com:3000');
-		socket.on('news', function (data) {
-			console.log(data);
-			socket.emit('my other event', { my: 'data' });
-		});
+		// socket connect
+		//var socket = io.connect('ec2-52-69-25-24.ap-northeast-1.compute.amazonaws.com:3000');
+		var socket = io.connect('localhost:3000');
+		
 		socket.on('loginok', function (data) {
 			console.log(data);		
 			
@@ -540,6 +539,19 @@
 			$('#provide-admin').replaceWith('<a id="provide-admin" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
 			$('#portfolio').replaceWith(optstr);
 		});
+		
+		function signup(){
+			console.log("signup");
+			console.log($('#sign_name')[0].value);
+			var userinfo = {
+					name : $('#sign_name')[0].value
+			}
+			socket.emit("signup",userinfo);
+			socket.on(userinfo.name,function(){
+				console.log("ok");
+			});
+			$('#signup_close').click();
+		}
 		
 	</script>
 	
