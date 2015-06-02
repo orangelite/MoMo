@@ -402,19 +402,62 @@
 			<nav class="navbar navbar-default">
 			  <div class="container-fluid">
    			    <div class="navbar-header">
-   			    
+   			    	<div class="btn-group-vertical" role="group" aria-label="...">
+  						<button type="button" onclick="join('EC');" class="btn btn-primary" >경제</button>
+  						<div id="EC_field"></div>
+  						<button type="button" onclick="join('EN');" class="btn btn-primary" >생활</button>
+  						<div id="EN_field"></div>
+  						<button type="button" onclick="join('FO');" class="btn btn-primary" >음식</button>
+  						<div id="FO_field"></div>
+  						<button type="button" onclick="join('GA');" class="btn btn-primary" >게임</button>
+  						<div id="GA_field"></div>
+  						<button type="button" onclick="join('SP');" class="btn btn-primary" >쇼핑</button>
+  						<div id="SP_field"></div>
+  						<button type="button" onclick="join('SS');" class="btn btn-primary" >스포츠</button>
+						<div id="SS_field"></div>
+					</div>
    			    
  			  </div>
   			 </div>
 			</nav>
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" id="signup_close" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" onclick="signup();" class="btn btn-primary" >Save changes</button>
+			<button type="button" id="join_close" class="btn btn-default" data-dismiss="modal">Close</button>
+			
 		  </div>
 		</div>
 	  </div>
 	</div>
+	
+	<!-- active modal -->
+	<div id="activeProvideModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">MoMo Active Group</h4>
+		  </div>
+		  <div class="modal-body">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+   			    <div class="navbar-header">
+   			    	<div class="btn-group-vertical" role="group" aria-label="...">
+  						<div id="active_field"></div>
+					</div>
+   			    
+ 			  </div>
+  			 </div>
+			</nav>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" id="active_close" class="btn btn-default" data-dismiss="modal">Close</button>
+			
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	
     
 	
 	<!-- Modal -->
@@ -570,6 +613,10 @@
 		$('#joinProvideModal').modal('show');
 	}
 	
+	function activeProvideModalOn(){
+		$('#activeProvideModal').modal('show');
+	}
+	
     // Opens the sidebar menu
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -596,8 +643,8 @@
 	
 	<script>
 		// socket connect
-		var socket = io.connect('ec2-52-69-25-24.ap-northeast-1.compute.amazonaws.com:3000');
-		//var socket = io.connect('localhost:3000');
+		//var socket = io.connect('ec2-52-69-25-24.ap-northeast-1.compute.amazonaws.com:3000');
+		var socket = io.connect('localhost:3000');
 		
 		function create(code){
 			socket.emit({code:code, name:"test", id:Wuserid });
@@ -625,7 +672,7 @@
 			$("#about").replaceWith(section);
 			$('#provide-create').replaceWith('<a id="provide-create" href="#about" class="btn btn-success" onclick="makeProvideModalOn()" >Learn More</a>');
 			$('#provide-join').replaceWith('<a id="provide-join" href="#portfolio" class="btn btn-success" onclick="joinProvideModalOn()" >Learn More</a>');
-			$('#provide-command').replaceWith('<a id="provide-command" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
+			$('#provide-command').replaceWith('<a id="provide-command" href="#about" class="btn btn-success" onclick="activeProvideModalOn()" >Learn More</a>');
 			$('#provide-admin').replaceWith('<a id="provide-admin" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
 			$('#portfolio').replaceWith(optstr);
 			
@@ -673,6 +720,34 @@
 			}
 		}
 		
+		function join(code){
+			console.log(code);
+			socket.emit("join",{id:Wuserid, code:code});
+			socket.on("join"+Wuserid,function(data){
+				console.log(data);
+				
+				$('#EC_field').replaceWith('<div id="EC_field"></div>');
+				$('#EN_field').replaceWith('<div id="EN_field"></div>');
+				$('#FO_field').replaceWith('<div id="FO_field"></div>');
+				$('#GA_field').replaceWith('<div id="GA_field"></div>');
+				$('#SP_field').replaceWith('<div id="SP_field"></div>');
+				$('#SS_field').replaceWith('<div id="SS_field"></div>');
+				
+				var fieldset = '';
+				for(var shoot in data){	
+					var da = '"'+data[shoot].refcode+'"';
+					
+					fieldset += "<button type = 'button' onclick = 'joinTo("+da+");' class='btn btn-success' >"+data[shoot].codename+"</button>";
+					
+					
+				}
+				
+				console.log(fieldset);
+				$('#'+data[0].code+'_field').replaceWith(fieldset);
+				
+			});
+		}
+		
 		function create(code){
 			console.log(code);
 			var name_value = prompt("모임명을 정해주세요", "");
@@ -681,6 +756,12 @@
 				socket.emit('create',{code:code, name:name_value, id:Wuserid});
 				$('#create_close').click();
 			 }
+		}
+		
+		function joinTo(refcode){
+			socket.emit('joinTo',{refcode:refcode, id: Wuserid});
+			$('#join_close').click();
+			alert("모임에 등록되었습니다.");
 		}
 		
 	</script>

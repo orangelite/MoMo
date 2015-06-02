@@ -119,6 +119,37 @@ var io = require('socket.io').listen(httpServer);
 io.sockets.on('connection', function (socket) {
  
 	
+	socket.on('join',function(data){
+		console.log(data);
+		 sqlconnection.query("select * from myDB.reflist where code='"+data.code +"'" ,function(err,result){
+	    		if(err){
+	    			console.error(err);
+	    			throw err;
+	    		}
+	    		console.log(result);
+	    		socket.emit("join"+data.id,result);
+	    		
+	      });
+	});
+	
+	socket.on('joinTo',function(data){
+		console.log(data);
+		
+		 var refqueryset = {
+				 uid : data.id,
+				 ref : data.refcode
+		 }
+		
+		 sqlconnection.query('insert into myDB.reflog set ?',refqueryset,function(err,result){
+		   		if(err){
+		   			console.error(err);
+		   			throw err;
+		   		}
+		   		console.log(refqueryset);
+		     });
+	});
+	
+	
 	 socket.on('create', function (data) {
 		console.log(data);
 		 sqlconnection.query('select * from myDB.reference',function(err,result){
