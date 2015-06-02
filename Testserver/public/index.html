@@ -399,7 +399,14 @@
 			<h4 class="modal-title" id="myModalLabel">MoMo Join Group</h4>
 		  </div>
 		  <div class="modal-body">
-			
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+   			    <div class="navbar-header">
+   			    
+   			    
+ 			  </div>
+  			 </div>
+			</nav>
 		  </div>
 		  <div class="modal-footer">
 			<button type="button" id="signup_close" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -589,8 +596,8 @@
 	
 	<script>
 		// socket connect
-		//var socket = io.connect('ec2-52-69-25-24.ap-northeast-1.compute.amazonaws.com:3000');
-		var socket = io.connect('localhost:3000');
+		var socket = io.connect('ec2-52-69-25-24.ap-northeast-1.compute.amazonaws.com:3000');
+		//var socket = io.connect('localhost:3000');
 		
 		function create(code){
 			socket.emit({code:code, name:"test", id:Wuserid });
