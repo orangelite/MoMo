@@ -654,6 +654,33 @@
 	}
 	
 	function activeProvideModalOn(){
+		var Data;
+		socket.emit('change',Wuserid);
+		socket.on('change'+Wuserid,function(data){
+			Data = data;
+			socket.emit('change2',Wuserid);
+		});
+		
+		socket.on('change2'+Wuserid,function(data){
+			console.log(Data,data);
+			var fieldset = '';
+			for(var shoot in Data){
+				var refname;
+				for(var sh in data){
+					if(data[sh].refcode == Data[shoot].ref){
+						refname = data[sh].codename;
+						break;
+					}
+				}
+				
+				var da = '"'+Data[shoot].ref+'"';		
+				fieldset += "<button type = 'button' onclick = 'activeTo("+da+");' class='btn btn-success' >"+refname+"</button><div id="+da+"></div>";		
+			}
+			
+			console.log(fieldset);
+			$('#active_field').replaceWith(fieldset);
+			
+		});
 		$('#activeProvideModal').modal('show');
 	}
 	

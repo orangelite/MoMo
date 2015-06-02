@@ -118,6 +118,31 @@ var io = require('socket.io').listen(httpServer);
 
 io.sockets.on('connection', function (socket) {
  
+	socket.on('change',function(data){
+		console.log(data);
+		 sqlconnection.query("select * from myDB.reflog where uid='"+data+"'" ,function(err,result){
+	    		if(err){
+	    			console.error(err);
+	    			throw err;
+	    		} 
+	    		console.log(result);
+	    		socket.emit("change"+data,result);    		
+	      });
+	});
+	
+	socket.on('change2',function(data){
+		
+		 sqlconnection.query("select * from myDB.reflist ",function(err,result){
+			 if(err){
+	    			console.error(err);
+	    			throw err;
+	    		}
+			 socket.emit("change2"+data,result);   
+		 });
+		
+	});
+	
+	
 	
 	socket.on('join',function(data){
 		console.log(data);
