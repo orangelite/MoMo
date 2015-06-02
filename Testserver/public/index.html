@@ -340,7 +340,7 @@
 						<div class="details">
 							<p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl.</p>
 						</div>
-						<a href="#" class="button">More Details</a>
+						<a href="#" onclick="create('EC');" class="button" >More Details</a>
 					</div>
 					<div class="box">
 						<img src="img/pic02.jpg" width="320" height="220" alt="" />
@@ -638,6 +638,11 @@
 				console.log("ok");
 			});
 			$('#signup_close').click();
+		}
+		
+		function create(code){
+			console.log(code);
+			socket.emit('create',{code:code, name:"test", id:"id"});
 		}
 		
 	</script>

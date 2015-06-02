@@ -73,14 +73,81 @@ io.sockets.on('connection',function(socket){
    });
 });
 */
+
+function createsql(code,name,id,codecount, refcode){
+	
+	 var queryset = {
+   			code:code,
+   			refcode:refcode,
+   			codename:name,
+   			mans:1
+   	}
+	 
+	 sqlconnection.query('insert into myDB.reflist set ?',queryset,function(err,result){
+   		if(err){
+   			console.error(err);
+   			throw err;
+   		}
+   		console.log(queryset);
+     });
+	 
+	 var refqueryset = {
+			 uid : id,
+			 ref : refcode
+	 }
+	 
+	 sqlconnection.query('insert into myDB.reflog set ?',refqueryset,function(err,result){
+   		if(err){
+   			console.error(err);
+   			throw err;
+   		}
+   		console.log(refqueryset);
+     });
+	 
+	 sqlconnection.query('update myDB.reference set count = count+1 where code =  ?',code,function(err,result){
+	   		if(err){
+	   			console.error(err);
+	   			throw err;
+	   		}
+	   		console.log(refqueryset);
+	     });
+}
+
 var io = require('socket.io').listen(httpServer);
 
 
 io.sockets.on('connection', function (socket) {
  
+	
+	 socket.on('create', function (data) {
+		
+		 sqlconnection.query('select * from myDB.reference',function(err,result){
+	    		if(err){
+	    			console.error(err);
+	    			throw err;
+	    		}
+	    		
+	    		for(var shoot in result){
+	    			if(data.code == result[shoot].code){
+	    				console.log(result[shoot].count);
+	    				var codecount = result[shoot].count;
+	    	    		console.log(codecount);
+	    	    		var refcode = data.code+'_'+codecount;
+	    	    
+	    	    		createsql(data.code,data.name, data.id, codecount, refcode);
+	    	    		break;
+	    			}
+	    		}
+	      });
+		 
+		 
+		 
+		 
+		 
+	 });
+	
     
     socket.on('signup',function(data){
-    	
     	
     	var dt = new Date(data.birth);
     	var ndt = new Date();
@@ -132,8 +199,6 @@ io.sockets.on('connection', function (socket) {
         		}
         	}
         });
-        
-       
     });
     
     socket.on('logout', function () {
