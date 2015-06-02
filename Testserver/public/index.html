@@ -451,6 +451,52 @@
 	  </div>
 	</div>
 	
+	<!-- change Modal -->
+	<div id="changeProvideModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">MoMo Change</h4>
+		  </div>
+		  <div class="modal-body">
+			<!-- 회원가입 양식-->
+			<link rel="stylesheet" href="css/style_sign.css">
+			<h1>Sign Up</h1>
+			
+			<fieldset>
+				<!--<legend>Your basic info</legend>-->
+				<!--이름-->
+				<label for="name">Name:</label>
+				<input type="text" id="sign_name" name="user_name">
+				<!--메일주소-->
+				<label for="mail">Email:</label>
+				<input type="email" id="sign_email" name="user_email">
+				<!--비밀번호-->
+				<label for="password">Password:</label>
+				<input type="password" id="sign_password" name="user_password">
+				<!--비밀번호확인-->
+				<label for="password">Password Again:</label>
+				<input type="password" id="sign_password_again" name="user_password_again">
+				
+			</fieldset>
+			<fieldset>
+				<!--관심사-->
+				<label>Interests:</label>
+					<input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Development</label><br>
+					<input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Design</label><br>
+				<input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+			</fieldset>
+			<!--회원가입 양식 종료-->
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" id="change_close" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" onclick="change();" class="btn btn-primary" >Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
 	
     
 	
@@ -611,6 +657,11 @@
 		$('#activeProvideModal').modal('show');
 	}
 	
+	function changeProvideModalOn(){
+		$('#changeProvideModal').modal('show');
+	}
+	
+	
     // Opens the sidebar menu
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -667,7 +718,7 @@
 			$('#provide-create').replaceWith('<a id="provide-create" href="#about" class="btn btn-success" onclick="makeProvideModalOn()" >Learn More</a>');
 			$('#provide-join').replaceWith('<a id="provide-join" href="#portfolio" class="btn btn-success" onclick="joinProvideModalOn()" >Learn More</a>');
 			$('#provide-command').replaceWith('<a id="provide-command" href="#about" class="btn btn-success" onclick="activeProvideModalOn()" >Learn More</a>');
-			$('#provide-admin').replaceWith('<a id="provide-admin" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
+			$('#provide-admin').replaceWith('<a id="provide-admin" href="#about" class="btn btn-success" onclick="changeProvideModalOn()" >Learn More</a>');
 			$('#portfolio').replaceWith(optstr);
 			
 		}
