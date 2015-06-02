@@ -15,7 +15,7 @@ var strmd = '';
 for(var i=1;i<=4;i++){
 	var tempstr = ' <div class="col-md-6">';
 		tempstr +=	'<div class="portfolio-item">';
-		tempstr +=	'  <a href="#">';
+		tempstr +=	'  <a href="#about">';
 		tempstr +=	'       <img class="img-portfolio img-responsive" src="img/portfolio-'+i+'.jpg">';
 		tempstr +=	'    </a>';
 		tempstr +=	'	</div>';
@@ -26,7 +26,7 @@ for(var i=1;i<=4;i++){
 	
                         
 var stred = ' </div>';
-	stred+='<a href="#" class="btn btn-dark">View More Items</a>';
+	stred+='<a href="#about" class="btn btn-dark">View More Items</a>';
 	stred+='            </div>';
 	stred+='        </div>';
 	stred+='     </div>;';

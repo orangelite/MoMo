@@ -121,7 +121,7 @@
     </section>
 
 	
-	<!-- 모달 -->
+	<!-- signup Modal -->
 	<div id="signupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 		<div class="modal-content">
@@ -317,9 +317,9 @@
                                 <i class="fa fa-flask fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
-                                    <strong>추천</strong>
+                                    <strong>활동</strong>
                                 </h4>
-                                <p>특별한 모임을 추천해드립니다.</p>
+                                <p>가입된 모임에서 활동하세요.</p>
                                 <a id="provide-command" href="#about" class="btn btn-light" onclick="providemodalon()" >Learn More</a>
                             </div>
                         </div>
@@ -346,6 +346,45 @@
         </div>
         <!-- /.container -->
     </section>
+    
+    <!-- make modal -->
+	<div id="makeProvideModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">MoMo Create New Group</h4>
+		  </div>
+		  <div class="modal-body">
+			
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" id="signup_close" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" onclick="signup();" class="btn btn-primary" >Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- join modal -->
+	<div id="joinProvideModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">MoMo Join Group</h4>
+		  </div>
+		  <div class="modal-body">
+			
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" id="signup_close" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" onclick="signup();" class="btn btn-primary" >Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+    
 	
 	<!-- Modal -->
 	<div id="provideModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -489,6 +528,15 @@
 		//<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"></button>
 		$('#provideModal').modal('show');
 	}
+	
+	function makeProvideModalOn(){
+		$('#makeProvideModal').modal('show');
+	}
+	
+	function joinProvideModalOn(){
+		$('#joinProvideModal').modal('show');
+	}
+	
     // Opens the sidebar menu
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -536,8 +584,8 @@
 			section+= '		</div>';	
 			section+= '	</section>';
 			$("#about").replaceWith(section);
-			$('#provide-create').replaceWith('<a id="provide-create" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
-			$('#provide-join').replaceWith('<a id="provide-join" href="#portfolio" class="btn btn-success" onclick="" >Learn More</a>');
+			$('#provide-create').replaceWith('<a id="provide-create" href="#about" class="btn btn-success" onclick="makeProvideModalOn()" >Learn More</a>');
+			$('#provide-join').replaceWith('<a id="provide-join" href="#portfolio" class="btn btn-success" onclick="joinProvideModalOn()" >Learn More</a>');
 			$('#provide-command').replaceWith('<a id="provide-command" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
 			$('#provide-admin').replaceWith('<a id="provide-admin" href="#about" class="btn btn-success" onclick="" >Learn More</a>');
 			$('#portfolio').replaceWith(optstr);
