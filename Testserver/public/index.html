@@ -158,7 +158,7 @@
 				<label>Birthday Day:</label>
 				<select class="birth" name="sign_Birthday_Day" id="Birthday_Day" >
 					<option value="-1">Day:</option>
-					<option value="01">1</option>
+					<option value="01" selected>1</option>
 					<option value="02">2</option>
 					<option value="03">3</option>
 					<option value="04">4</option>
@@ -193,7 +193,7 @@
 
 				<select class="birth" name="sign_Birthday_Month" id="Birthday_Month">
 					<option value="-1">Month:</option>
-					<option value="01">Jan</option>
+					<option value="01" selected>Jan</option>
 					<option value="02">Feb</option>
 					<option value="03">Mar</option>
 					<option value="04">Apr</option>
@@ -231,7 +231,7 @@
 					<option value="1983">1983</option>
 					<option value="1982">1982</option>
 					<option value="1981">1981</option>
-					<option value="1980">1980</option>
+					<option value="1980" selected>1980</option>
 				</select>
 				<!--관심사-->
 				<label>Interests:</label>
@@ -336,7 +336,7 @@
 			<div class="container">
 				<div class="boxA">
 					<div class="box margin-btm">
-						<img src="img/pic01.jpg" width="60%" height="180" alt="" />
+						<img src="img/pic01.jpg" width="320" height="180" alt="" />
 						<div class="details">
 							<p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl.</p>
 						</div>
@@ -619,25 +619,46 @@
 			
 		}
 		
-	
+		function chk_invalid(){
+			var flag = 1;
+			if($('#sign_name').val()==''){
+				alert('이름을 입력하세요.');
+				exit;
+			}else if($('#sign_email').val()==""){
+				alert("이메일을 입력하세요.");
+				exit;
+			}else if($('#sign_password').val()==''){
+				alert("비밀번호를 입력하세요.");
+				exit;
+			}else if($('#sign_password').val()!=$('#sign_password_again').val()){
+				alert("비밀번호가 일치하지 않습니다.");
+				exit;
+			}
+			return flag;
+		}
 		
 		function signup(){
-			console.log("signup");
-			console.log($('#sign_name').val());
-			console.log($("input[name='user_gender']:checked").val());
-			var userinfo = {
-					name : $('#sign_name').val(),
-					email : $('#sign_email').val(),
-					passward : $('#sign_password').val(),
-					gender : $("input[name='user_gender']:checked").val(),
-					birth : $("select[name='sign_Birthday_Day']").val() +'/'+ $("select[name='sign_Birthday_Month']").val()+'/'+$("select[name='sign_Birthday_Year']").val()
-					//birth : $("select[name='sign_Birthday_Year']").val()+''+$("select[name='sign_Birthday_Month']").val()+''+$("select[name='sign_Birthday_Day']").val()
+			var flag = chk_invalid();
+			if(flag){
+				console.log("signup");
+				console.log($('#sign_name').val());
+				console.log($("input[name='user_gender']:checked").val());
+				var userinfo = {
+						name : $('#sign_name').val(),
+						email : $('#sign_email').val(),
+						passward : $('#sign_password').val(),
+						gender : $("input[name='user_gender']:checked").val(),
+						birth : $("select[name='sign_Birthday_Day']").val() +'/'+ $("select[name='sign_Birthday_Month']").val()+'/'+$("select[name='sign_Birthday_Year']").val()
+						//birth : $("select[name='sign_Birthday_Year']").val()+''+$("select[name='sign_Birthday_Month']").val()+''+$("select[name='sign_Birthday_Day']").val()
+				}
+				socket.emit("signup",userinfo);
+				socket.on(userinfo.name,function(){
+					console.log("ok");
+				});	
+				$('#signup_close').click();
+				alert("회원 가입이 완료되었습니다.");
+				
 			}
-			socket.emit("signup",userinfo);
-			socket.on(userinfo.name,function(){
-				console.log("ok");
-			});
-			$('#signup_close').click();
 		}
 		
 		function create(code){
