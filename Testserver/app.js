@@ -120,7 +120,7 @@ io.sockets.on('connection', function (socket) {
  
 	
 	 socket.on('create', function (data) {
-		
+		console.log(data);
 		 sqlconnection.query('select * from myDB.reference',function(err,result){
 	    		if(err){
 	    			console.error(err);
@@ -193,7 +193,8 @@ io.sockets.on('connection', function (socket) {
         			console.log("!!",md5(data.password));
         			
         			if(result[shoot].Upassword == md5(data.password)){
-        				 socket.emit("login"+data.username,result[shoot].Uname);
+        				 socket.emit("login"+data.username,{name:result[shoot].Uname, id:result[shoot].Uemail});
+        				 console.log(result[shoot]);
         				 break;
         			}
         		}
