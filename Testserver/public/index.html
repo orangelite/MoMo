@@ -716,7 +716,7 @@
 		
 		function sendMsg(){
 			socket.emit("message",{id:Wuserid, refcode:Wrefcode, msg:$('#chat-input').val()});
-			$('#chat-input').val() = "";
+			$('#chat-input').replaceWith("");
 		}
 		
 		
