@@ -715,7 +715,8 @@
 		//var socket = io.connect('localhost:3000');
 		
 		function sendMsg(){
-			socket.emit("message",{id:Wuserid, refcode:Wrefcode, msg:$('#chat-input').val()})
+			socket.emit("message",{id:Wuserid, refcode:Wrefcode, msg:$('#chat-input').val()});
+			$('#chat-input').val() = "";
 		}
 		
 		
