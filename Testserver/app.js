@@ -117,6 +117,11 @@ var io = require('socket.io').listen(httpServer);
 
 
 io.sockets.on('connection', function (socket) {
+	
+	socket.on('message',function(data){
+		socket.emit('message',data);
+		socket.broadcast.emit('message',data);
+	});
  
 	socket.on('change',function(data){
 		console.log(data);

@@ -717,6 +717,60 @@
 		var socket = io.connect('ec2-52-69-25-24.ap-northeast-1.compute.amazonaws.com:3000');
 		//var socket = io.connect('localhost:3000');
 		
+		function sendMsg(){
+			socket.emit("message",{id:Wuserid, refcode:Wrefcode, msg:$('#chat-input').val()})
+		}
+		
+		
+		socket.on("message",function(data){
+			if(data.refcode == Wrefcode){
+				
+				var fieldset = "";
+				fieldset += '<ul class="chat"> ';
+				fieldset += '<li class="{{$even && "left" || "right"}} clearfix" ng-repeat="chat in chats">';
+				fieldset += '  <div class="chat-body clearfix">';
+				fieldset += '    <div class="header text-{{$even && "left" || "right"}}">';
+				fieldset += '      <strong>';
+				fieldset += data.id;
+				fieldset += '</strong>';
+				fieldset += '    </div>';
+				fieldset += '    <p>';
+				fieldset += data.msg;
+				fieldset += '</p></div></li></ul>';
+				
+				$('#chatbody').append(fieldset);
+			}
+		});
+		
+		
+		var Wrefcode = '';
+		function activeTo(refcode){
+			Wrefcode = refcode;
+			var fieldset = '';
+			
+			fieldset += '<div class="chatcontainer">';
+			fieldset += '  <div class="row">';
+			fieldset += '    <div class="col-lg-12">';
+			fieldset += '      <div class="chat-panel panel panel-default">';
+			fieldset += '        <div class="panel-heading">';
+			fieldset += '          <i class="fa fa-comments fa-fw"></i>';
+			fieldset += '       Chatting';
+			fieldset += '        </div>';
+			fieldset += '        <div class="panel-body" id="chatbody" ng-controller="chatBodyCtrl"></div>';
+			fieldset += '    <div class="panel-footer" ng-controller="chatInputCtrl">';
+			fieldset += '        <div class="input-group">';
+			fieldset += '         <input id="chat-input" type="text" class="form-control input-sm" ng-model="chatTxt">';
+			fieldset += '        <span class="input-group-btn">';
+			fieldset += '        <button class="btn btn-warning btn-sm" id="btn-chat" onclick="sendMsg()">전송</button>';
+			fieldset += '        </span></div></div></div></div></div></div>';
+			
+			$("#"+Wrefcode).replaceWith(fieldset);
+		    
+		    
+		    
+		    
+		}
+		
 		function create(code){
 			socket.emit({code:code, name:"test", id:Wuserid });
 			console.log(Wuserid,code);
